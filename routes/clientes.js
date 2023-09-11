@@ -1,50 +1,22 @@
 const { Router } = require("express");
-const Cliente = require("../models/Cliente");
+const {
+  obtenerClientes,
+  obtenerClientePorId,
+  agregarCliente,
+  actualizarCliente,
+  eliminarCliente,
+} = require("../controllers/clientes");
 
 const router = Router();
 
-router.get("/", async(req, res) => {
-    try {
-        const clientes = await Cliente.find({});
+router.get("/", obtenerClientes);
 
-        res.json({
-            ok: true,
-            msg: "Clientes obtenidos con exito!",
-            clientes: clientes
-        })
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({
-            ok: false,
-            msg: "Contacta con el admin."
-        })
-    }
-})
+router.get("/buscar/:id", obtenerClientePorId);
 
-router.get("/:id", (req, res) => {
-    res.json({
-        ok: true,
-        msg: req.params.id
-    })
-})
+router.post("/", agregarCliente);
 
-router.post("/", async(req, res) => {
-    try {
-        const cliente = new Cliente(req.body);
+router.put("/:id", actualizarCliente);
 
-        await cliente.save();
-
-        res.json({
-            ok: true,
-            msg: "Cliente agregado con exito!"
-        })
-    } catch (error) {
-        console.log(error);
-        res.status(500).json({
-            ok: false,
-            msg: "Contacta con el admin."
-        })
-    }
-})
+router.delete("/:id", eliminarCliente);
 
 module.exports = router;
