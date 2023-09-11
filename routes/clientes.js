@@ -11,7 +11,9 @@ const router = Router();
 
 router.get("/", obtenerClientes);
 
-router.get("/buscar/:id", obtenerClientePorId);
+router.get("/buscar/id/:id", obtenerClientePorId);
+
+router.get("/buscar/nombre/:nombre", );
 
 router.post("/", agregarCliente);
 
