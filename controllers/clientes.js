@@ -58,7 +58,7 @@ const obtenerClientePorNombre = async (req, res) => {
       nombres: { $regex: nombreCliente, $options: "i" },
     });
 
-    if (!cliente) {
+    if (cliente.length === 0) {
       return res.status(404).json({
         ok: false,
         msg: "No existe un cliente con ese nombre",

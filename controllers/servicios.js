@@ -20,7 +20,7 @@ const obtenerServicios = async (_, res) => {
 
     return res.json({
       ok: true,
-      data: servicios,
+      servicios: servicios,
     });
   } catch (error) {
     console.log(error);
@@ -45,7 +45,7 @@ const obtenerServiciosPorMoto = async (req, res) => {
 
     return res.json({
       ok: true,
-      data: servicios,
+      servicios: servicios,
     });
   } catch (error) {
     console.log(error);
@@ -73,9 +73,9 @@ const obtenerServicio = async (req, res) => {
       });
     }
 
-    res.json({
+    return res.json({
       ok: true,
-      data: servicio,
+      servicio: servicio,
     });
   } catch (error) {
     console.log(error);
@@ -229,7 +229,7 @@ const agregarServicio = async (req, res) => {
     const nuevoServicio = new Servicio(servicio);
     await nuevoServicio.save();
 
-    res.json({
+    return res.json({
       ok: true,
       msg: `El servicio ha sido registrado`,
     });

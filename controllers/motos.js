@@ -4,7 +4,7 @@ const Moto = require("../models/Moto");
 
 const obtenerMotos = async(_, res) => {
     try {
-        const motos = await Moto.find({})
+        const motos = await Moto.find({}).populate("cliente", "nombres apellidos")
 
         if (motos.length === 0) {
             return res.status(404).json({
@@ -30,7 +30,7 @@ const obtenerMotos = async(_, res) => {
 const obtenerMoto = async(req, res) => {
     try {
         const id = req.params.id
-        const moto = await Moto.findById(id)
+        const moto = await Moto.findById(id).populate("cliente", "nombres apellidos")
 
         if (!moto) {
             return res.status(404).json({
@@ -56,7 +56,7 @@ const obtenerMoto = async(req, res) => {
 const obtenerMotosPorCliente = async(req, res) => {
     try {
         const cliente = req.params.cliente;
-        const motos = await Moto.find({cliente: cliente})
+        const motos = await Moto.find({cliente: cliente}).populate("cliente", "nombres apellidos")
 
         if (motos.length === 0) {
             return res.status(404).json({
