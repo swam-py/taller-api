@@ -21,6 +21,10 @@ const ClienteSchema = new Schema({
         type: String,
         required: true,
         unique: true
+    },
+    whatsapp: {
+        type: String,
+        required: true
     }
 });
 

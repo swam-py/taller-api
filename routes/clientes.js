@@ -5,15 +5,16 @@ const {
   agregarCliente,
   actualizarCliente,
   eliminarCliente,
+  obtenerClientePorNombre,
 } = require("../controllers/clientes");
 
 const router = Router();
 
 router.get("/", obtenerClientes);
 
-router.get("/buscar/id/:id", obtenerClientePorId);
+router.get("/busqueda/id/:id", obtenerClientePorId);
 
-router.get("/buscar/nombre/:nombre", );
+router.get("/busqueda/nombre/:nombre", obtenerClientePorNombre);
 
 router.post("/", agregarCliente);
 
